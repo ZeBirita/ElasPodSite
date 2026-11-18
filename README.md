@@ -6,23 +6,20 @@ Site oficial do ElasPod: um podcast e uma comunidade de escuta, acolhimento e tr
 
 Abra `index.html` no navegador ou sirva a pasta com qualquer servidor HTTP estático. O site está preparado para `https://elaspod.com/`.
 
-## Publicar episódios
+## Páginas
 
-As capas e os textos dos oito cartões estão em `index.html`. Quando o áudio de um episódio estiver disponível:
+- `index.html`: página inicial e seleção dos episódios mais recentes (até oito).
+- `episodios.html`: catálogo completo carregado do arquivo central de dados.
+- `sobre.html`: missão, visão, valores e apresentação do projeto e da idealizadora.
+- `rodas-de-conversa.html`: funcionamento, combinados de cuidado e agendamento.
+- `contato.html`: canal oficial de contato.
 
-1. Coloque o ficheiro numa localização publicada, por exemplo `assets/audio/episodio-01.mp3`, ou use um URL HTTPS.
-2. Preencha o atributo `data-src` do respetivo elemento `audio` com o caminho ou URL do ficheiro.
-3. Atualize o estado e a data do episódio no cartão.
+## Atualizar episódios
 
-O JavaScript ativa o controlo nativo de áudio apenas quando `data-src` está preenchido. Sem ficheiro configurado, o cartão indica «Áudio em breve».
+Todos os dados dos episódios ficam em `assets/js/episodes.js`. Para adicionar, atualizar ou remover um episódio, edite apenas esse catálogo: número, título, descrição, duração, URL do áudio e caminho da capa. Os cartões da página inicial e do catálogo completo são gerados automaticamente com esses dados.
 
-## Contacto e Rodas de Conversa
+Os campos `duration` e `audioUrl` podem ficar vazios enquanto a gravação não estiver publicada. URLs de episódios do Spotify são apresentados como players incorporados; ficheiros de áudio e outros URLs diretos usam o player nativo. As capas devem ser guardadas em `assets/images/`.
 
-Os botões abrem uma conversa no WhatsApp oficial `+351 910 526 079`, com a mensagem pré-configurada. O URL usa o formato `https://wa.me/351910526079`.
+## Contacto e design
 
-## Estrutura
-
-- `index.html`: conteúdo, navegação e metadados do site.
-- `assets/css/style.css`: identidade visual responsiva.
-- `assets/js/script.js`: menu móvel, controlos de áudio e voltar ao início.
-- `assets/images/`: imagens e capas disponíveis no projeto.
+Os botões abrem uma conversa no WhatsApp oficial `+351 910 526 079`. O endereço usa o formato `https://wa.me/351910526079`. Os estilos responsivos compartilhados estão em `assets/css/style.css`; a navegação móvel e a renderização dos episódios ficam em `assets/js/script.js`.
