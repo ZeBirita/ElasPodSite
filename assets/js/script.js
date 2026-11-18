@@ -45,20 +45,23 @@ episodeLists.forEach(function (list) {
     throw new Error('O catálogo central de episódios não foi carregado.');
   }
 
-  const newestFirst = episodes.slice().sort(function (first, second) {
-    return second.number - first.number;
+  const oldestFirst = episodes.slice().sort(function (first, second) {
+    return first.number - second.number;
   });
-  const visibleEpisodes = list.dataset.episodeList === 'latest' ? newestFirst.slice(0, 8) : newestFirst;
+  const visibleEpisodes = list.dataset.episodeList === 'latest' ? oldestFirst.slice(-8) : oldestFirst;
 
   visibleEpisodes.forEach(function (episode) {
     const item = document.createElement('li');
     item.className = 'episode-card';
 
+    const coverFrame = document.createElement('div');
+    coverFrame.className = 'episode-cover';
     const cover = document.createElement('img');
     cover.src = episode.cover;
     cover.alt = `Capa do episódio ${episode.number}: ${episode.title}`;
     cover.loading = 'lazy';
-    item.appendChild(cover);
+    coverFrame.appendChild(cover);
+    item.appendChild(coverFrame);
 
     const content = document.createElement('div');
     content.className = 'episode-content';
@@ -85,6 +88,7 @@ episodeLists.forEach(function (list) {
     content.appendChild(description);
 
     if (episode.audioUrl) {
+      item.classList.add('episode-card--has-audio');
       let player;
       if (spotifyEpisode) {
         item.classList.add('episode-card--spotify');
